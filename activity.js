@@ -92,7 +92,7 @@ function performAction(afterTalk) {
   );
 
   setTimeout(() => {
-    performAction(false)
+    performAction(false);
   }, randomInterval);
 }
 
@@ -114,13 +114,35 @@ function findBot() {
 }
 
 function moveToBot(bot) {
+
   const botCostumeId = bot
     .getAttribute("style")
     .match(/url\("\/cw3\/cats\/0\/costume\/(39|40|41|42)\.png"\)/)[1];
   let botId = 0;
 
   if (botCostumeId) {
-    botId = botCostumeId - 39 + 2000;
+    switch (botCostumeId) {
+      case '39':
+        botId = 2001;
+        break; 
+
+      case '40':
+        botId = 2000;
+        break;
+
+      case '41':
+        botId = 2002;
+        break;
+
+      case '42':
+        botId = 2003;
+        break;
+    }
+  }
+  
+  if (botId == 2000 || botId == '2000' ) {
+    console.log('meet bot ', botId)
+    return
   }
 
   performMouseMove(bot);
@@ -129,9 +151,6 @@ function moveToBot(bot) {
   const prevCage =
     bot.parentElement?.parentElement?.parentElement?.parentElement
       ?.parentElement.previousElementSibling;
-  const nextCage =
-    bot.parentElement?.parentElement?.parentElement?.parentElement
-      ?.parentElement.nextElementSibling;
 
   let rect = bot.getBoundingClientRect();
   const offsetX = Math.random() * 100 - 50;
@@ -153,13 +172,7 @@ function moveToBot(bot) {
 
   prevCage.dispatchEvent(event);
 
-  if (botId === 2001) {
-    console.log('found cat2001')
-    return
-  }
-
   const randomTime = randomInterval() / 2;
-
   console.log(
     `Next action will occur in ${(randomTime / 1000).toFixed(1)} seconds.`
   );
@@ -170,11 +183,16 @@ function moveToBot(bot) {
 }
 
 function talkToBot(id) {
+  console.log('Talking to bot cat', id)
   const menu = document.querySelector("#mit");
   const optionToSelect = document.querySelector(
     `option[value="${id.toString()}"]`
   );
-  console.log(`option[value="${id}"]`);
+
+  if (!optionToSelect) {
+    performAction(false);
+    return
+  }
 
   optionToSelect.selected = true;
 
@@ -183,7 +201,6 @@ function talkToBot(id) {
     return;
   }
 
-  // menu.value = id.toString();
   menu.dispatchEvent(new Event("change", { bubbles: true }));
 
   const randomTime = randomInterval() / 2;
@@ -222,14 +239,43 @@ function doTalkToBot() {
       offsetX,
       offsetY
     );
+
+    const chatForm = document.getElementById('chat_form');
+    
+    botChat(chatForm)
   }
+  
   const randomTime = randomInterval() / 2;
   console.log(
     `Next action will occur in ${(randomTime / 1000).toFixed(1)} seconds.`
   );
   setTimeout(() => {
-    performAction(true)
+    performAction(true);
   }, randomTime);
+}
+
+function botChat(chatForm) {
+  // как-то задержать тут тыкалку тк не успевает зарендериться и уходит в else
+  if (chatForm && chatForm.querySelector('select#text')) {
+    console.log('Chat contains select');
+
+    const msgSendButton = chatForm.querySelector('#msg_send');
+    
+    if (msgSendButton) {
+      msgSendButton.click();
+    }
+    const randomTime = randomInterval() / 4;
+    console.log(
+      `Next action will occur in ${(randomTime / 1000).toFixed(1)} seconds.`
+    );
+    setTimeout(() => {
+      botChat(chatForm)
+    }, randomTime);
+
+  } else {
+    console.log('Chat without select');
+    return
+  }
 }
 
 performAction(false);
