@@ -6,9 +6,8 @@
 // @description  Полезные дополнения для catwar.su
 // @author       Fredo14
 // @copyright    2019—2020, Хвойница (https://catwar.su/cat209467)
-// @updateURL    https://openuserjs.org/meta/Fredo14/CatWar_Mod.meta.js
 // @license      MIT; https://opensource.org/licenses/MIT
-// @match        https://*.catwar.su/*
+// @match        https://*.catwar.net/*
 // @grant        none
 // ==/UserScript==
 
