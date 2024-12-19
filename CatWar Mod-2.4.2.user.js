@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         CatWar Mod
 // @name:ru      Варомод
-// @namespace    https://catwar.su/blog482084
+// @namespace    https://catwar.net/blog482084
 // @version      2.4.2
 // @description  Полезные дополнения для catwar.su
 // @author       Fredo14
-// @copyright    2019—2020, Хвойница (https://catwar.su/cat209467)
+// @copyright    2019—2020, Хвойница (https://catwar.net/cat209467)
 // @license      MIT; https://opensource.org/licenses/MIT
 // @match        https://*.catwar.net/*
 // @grant        none
@@ -421,7 +421,7 @@
         const nowDateString = dateToString(new Date);
         const moonsNow = getMoonsFromDate(birthDateString, nowDateString);
         let bornWord;
-        const sex = $('[src^="//e.catwar.su/avatar"]').first()[0].style.borderColor;
+        const sex = $('[src^="//e.catwar.net/avatar"]').first()[0].style.borderColor;
         const isRegDate = (/регистрац/.test(infoText) && $('#age2_icon').length);
         switch (sex) {
           case 'pink':
@@ -735,7 +735,7 @@
       const storedAvatar = window.sessionStorage.getItem('avatar' + catId);
 
       if (catId === 0) {
-        avatarDiv.css('background-image', `url(//e.catwar.su/avatar/0.jpg)`);
+        avatarDiv.css('background-image', `url(//e.catwar.net/avatar/0.jpg)`);
       } else if (storedAvatar) {
         avatarDiv.css('background-image', `url(${storedAvatar})`);
       } else {
@@ -1899,7 +1899,7 @@ label { cursor: pointer; }
       });
 
       if (isPage('ls?3')) showSavedLsList();
-      if (isPage(/^https:\/\/catwar.su\/ls\?id=\d+/)) changeMessagePage();
+      if (isPage(/^https:\/\/catwar.net\/ls\?id=\d+/)) changeMessagePage();
 
       body.on('click', '.del-saved', function(){
         const lsId = $(this).data('id');
@@ -1919,13 +1919,13 @@ label { cursor: pointer; }
       if ($(this).attr('id') === 'f3') {
         if (e.ctrlKey) return;
         e.preventDefault();
-        history.pushState(null, null, 'https://catwar.su/ls?3');
+        history.pushState(null, null, 'https://catwar.net/ls?3');
         showSavedLsList();
       }
       else if ($(this).attr('id') === 's') {
         if (e.ctrlKey) return;
         e.preventDefault();
-        history.pushState(null, null, 'https://catwar.su/ls?search');
+        history.pushState(null, null, 'https://catwar.net/ls?search');
         showSearch();
       }
       else {
@@ -1937,11 +1937,11 @@ label { cursor: pointer; }
     const observer = new MutationObserver(function (mutations) {
       mutations.forEach(function () {
         if (enableSaving && isPage('ls?3')) {
-          history.pushState(null, null, 'https://catwar.su/ls?3');
+          history.pushState(null, null, 'https://catwar.net/ls?3');
           showSavedLsList();
         }
         else if (isPage('ls?search')) {
-          history.pushState(null, null, 'https://catwar.su/ls?search');
+          history.pushState(null, null, 'https://catwar.net/ls?search');
           showSearch();
         }
         else {
@@ -1949,7 +1949,7 @@ label { cursor: pointer; }
           hideSearch();
         }
         if (isPage('ls?new')) addBBcode();
-        if (enableSaving && isPage(/^https:\/\/catwar.su\/ls\?id=\d+/)) changeMessagePage();
+        if (enableSaving && isPage(/^https:\/\/catwar.net\/ls\?id=\d+/)) changeMessagePage();
       });
     });
     observer.observe($('#main')[0], { childList: true });
@@ -2995,7 +2995,7 @@ ${ls.type ? 'Получатель' : 'Отправитель'}: <span id="msg_lo
 
   function isPage(page, match) {
     if (page instanceof RegExp) return page.test(window.location.href);
-    const re = new RegExp('catwar\.su/' + page.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + (match ? '(#.*)?$' : ''));
+    const re = new RegExp('catwar\.net/' + page.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + (match ? '(#.*)?$' : ''));
     return re.test(window.location.href);
   }
 
@@ -3077,7 +3077,7 @@ ${ls.type ? 'Получатель' : 'Отправитель'}: <span id="msg_lo
       function (data) {
         const temp = $('<div/>', { html: data });
         let avatar = temp.find('[src*=avatar]').attr('src');
-        if (!avatar) avatar = '//e.catwar.su/avatar/0.jpg';
+        if (!avatar) avatar = '//e.catwar.net/avatar/0.jpg';
         try {
           window.sessionStorage.setItem('avatar' + catId, avatar);
         } catch (err) { }
