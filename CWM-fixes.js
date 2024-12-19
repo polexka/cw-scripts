@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         CatWar Mod
 // @name:ru      Варомод
-// @namespace    https://catwar.net/blog482084
+// @namespace    https://catwar.net/blog482084 - блог удалили
 // @version      2.4.2
 // @description  Полезные дополнения для catwar.su
 // @author       Fredo14
-// @copyright    2019—2020, Хвойница (https://catwar.net/cat209467)
+// @copyright    2019—2020, Хвойница (https://catwar.net/cat209467) - хвойница удалилась, пишите в тг за починкой скрипта @polexka
 // @license      MIT; https://opensource.org/licenses/MIT
 // @match        https://*.catwar.net/*
 // @grant        none
