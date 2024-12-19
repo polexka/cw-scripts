@@ -1,3 +1,7 @@
+var script = document.createElement('script');
+script.src = "https://cdn.jsdelivr.net/npm/socket.io-client@4.6.0/dist/socket.io.min.js";
+
+script.onload = function() {
 document.addEventListener('DOMContentLoaded', function () {
     (function() {
     const space = 50;
@@ -424,3 +428,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+};
+document.head.appendChild(script);
