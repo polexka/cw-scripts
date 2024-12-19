@@ -421,7 +421,7 @@
         const nowDateString = dateToString(new Date);
         const moonsNow = getMoonsFromDate(birthDateString, nowDateString);
         let bornWord;
-        const sex = $('[src^="//e.catwar.net/avatar"]').first()[0].style.borderColor;
+        const sex = $('[src^="/avatar/"]').first()[0].style.borderColor;
         const isRegDate = (/регистрац/.test(infoText) && $('#age2_icon').length);
         switch (sex) {
           case 'pink':
