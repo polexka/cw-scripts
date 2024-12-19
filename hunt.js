@@ -1,4 +1,5 @@
-(function() {
+document.addEventListener('DOMContentLoaded', function () {
+    (function() {
     const space = 50;
     const speed_ai = 2.5;
     // const min_such = 9000;
@@ -419,3 +420,7 @@
         socket.disconnect()
     })
 })();
+});
+
+
+
